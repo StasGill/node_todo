@@ -1,0 +1,27 @@
+{
+  "name": "node_todo",
+  "version": "1.0.0",
+  "description": "todo list",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StasGill/node_todo.git"
+  },
+  "author": "Stas Hill",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StasGill/node_todo/issues"
+  },
+  "homepage": "https://github.com/StasGill/node_todo#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.12"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
