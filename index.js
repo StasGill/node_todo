@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const toDoRoute = require("./todo");
-const register = require("./api/registration");
+const router = require("./api/routes/auth.routes");
 
 const PORT = process.env.PORT || 4000;
 
@@ -9,8 +8,8 @@ const mongoString =
   "mongodb+srv://stan:stan12@cluster0.5wrpa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 const app = express();
-app.use(toDoRoute);
-app.use(register);
+app.use(express.json({ extended: true }));
+app.use("/api/auth", router);
 
 async function start() {
   try {
@@ -21,7 +20,8 @@ async function start() {
       console.log("Server has been started at port ", PORT);
     });
   } catch (e) {
-    console.log("ERROR", e);
+    console.log("Server Error", e.message);
+    process.exit(1);
   }
 }
 
