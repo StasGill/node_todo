@@ -2,7 +2,7 @@
 
 ---
 
-Register route : https://intense-peak-83437.herokuapp.com/api/auth/register
+<h2>Register</h2> route : https://intense-peak-83437.herokuapp.com/api/auth/register
 
 Method : post
 
