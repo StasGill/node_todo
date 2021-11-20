@@ -2,82 +2,90 @@
 
 ---
 
-<h2>Register</h2> route : https://intense-peak-83437.herokuapp.com/api/auth/register
+<h2>Register</h2>
 
-Method : post
+**Route** : https://intense-peak-83437.herokuapp.com/api/auth/register
 
-Body : {
+**Method** : post
+
+**Body** : {
 "email": SOME EMAIL,
 "password": SOME PASSWORD
 }
 
-Password must be not less 6 simbols and not more 12 simbols
+**Password** must be not less 6 simbols and not more 12 simbols
 
 ---
 
-Login route : https://intense-peak-83437.herokuapp.com/api/auth/login
+<h2>Login</h2>
 
-Method : post
+**Route** : https://intense-peak-83437.herokuapp.com/api/auth/login
 
-Body : {
+**Method** : post
+
+**Body** : {
 "email": SOME EMAIL,
 "password": SOME PASSWORD
 }
 
-Return Token
+**Return** Token
 
 ---
 
----
+<h2>Get all Todo</h2>
 
-Get all Todo : https://intense-peak-83437.herokuapp.com/api/todo/
+**Route** : https://intense-peak-83437.herokuapp.com/api/todo/
 
-Method : get
+**Method** : get
 
-headers: { 'Authorization': 'Bearer ' + Token }
+**headers** : { 'Authorization': 'Bearer ' + Token }
 
-Return { message: ""Good", todo: [ Alltodo ] }
-
----
-
-Add Todo : https://intense-peak-83437.herokuapp.com/api/todo/
-
-Method : post
-
-headers: { 'Authorization': 'Bearer ' + Token }
-
-Body : {
-title: Todo Title
-}
-
-Return { message: ""Good", todo: [ Alltodo ] }
+**Return** { message: ""Good", todo: [ Alltodo ] }
 
 ---
 
-Update Todo : https://intense-peak-83437.herokuapp.com/api/todo/
+<h2>Add Todo</h2>
 
-Method : patch
+**Route** : https://intense-peak-83437.herokuapp.com/api/todo/
 
-headers: { 'Authorization': 'Bearer ' + Token }
+**Method** : post
 
-Body : {
+**headers** : { 'Authorization': 'Bearer ' + Token }
+
+**Body** : { title: Todo Title }
+
+**Return** { message: ""Good", todo: [ Alltodo ] }
+
+---
+
+<h2>Update Todo</h2>
+
+**Route** : https://intense-peak-83437.herokuapp.com/api/todo/
+
+**Method** : patch
+
+**headers** : { 'Authorization': 'Bearer ' + Token }
+
+**Body** : {
 id: Todo Id,
 title: Todo Title
 }
 
-Return { message: ""Good", todo: [ Todo ] }
+**Return** : { message: ""Good", todo: [ Todo ] }
 
 ---
 
-Delete Todo : https://intense-peak-83437.herokuapp.com/api/todo/
+<h2>Delete Todo</h2>
 
-Method : delete
+**Route** : https://intense-peak-83437.herokuapp.com/api/todo/
 
-headers: { 'Authorization': 'Bearer ' + Token }
+**Method** : delete
 
-Body : { id: Todo Id }
+**Headers** : { 'Authorization': 'Bearer ' + Token }
 
-Return { message: "To do delete", todo: Todo }
+**Body** : { id: Todo Id }
+
+**Return** : { message: "To do delete", todo: Todo }
 
 ---
 
