@@ -70,7 +70,6 @@ router.post(
       const user = await User.findOne({
         email: email,
       });
-      console.log(typeof email);
 
       if (!user) {
         return res.status(400).json({ message: "User not found(" });

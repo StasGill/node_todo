@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const router = require("./api/routes/auth.routes");
 
 const PORT = process.env.PORT || 4000;
 
@@ -9,7 +8,9 @@ const mongoString =
 
 const app = express();
 app.use(express.json({ extended: true }));
-app.use("/api/auth", router);
+app.use("/api/auth", require("./api/routes/auth.routes"));
+app.use("/api/todo", require("./api/routes/todo.routes"));
+app.use("/api/todos", require("./api/routes/todos.routes"));
 
 async function start() {
   try {
