@@ -34,9 +34,7 @@ Get all Todo : https://intense-peak-83437.herokuapp.com/api/todo/
 
 Method : get
 
-header : {
-Token : <Token>
-}
+headers: { 'Authorization': 'Bearer ' + <Token> }
 
 Return { message: ""Good", todo: [ <Alltodo> ] }
 
@@ -46,9 +44,8 @@ Add Todo : https://intense-peak-83437.herokuapp.com/api/todo/
 
 Method : post
 
-header : {
-Token : <Token>
-}
+headers: { 'Authorization': 'Bearer ' + <Token> }
+
 Body : {
 title: <Todo Title>
 }
@@ -57,13 +54,12 @@ Return { message: ""Good", todo: [ <Alltodo> ] }
 
 ---
 
-Add Todo : https://intense-peak-83437.herokuapp.com/api/todo/
+Update Todo : https://intense-peak-83437.herokuapp.com/api/todo/
 
 Method : patch
 
-header : {
-Token : <Token>
-}
+headers: { 'Authorization': 'Bearer ' + <Token> }
+
 Body : {
 id: <Todo Id>
 title: <Todo Title>
@@ -77,12 +73,9 @@ Delete Todo : https://intense-peak-83437.herokuapp.com/api/todo/
 
 Method : delete
 
-header : {
-Token : <Token>
-}
-Body : {
-id: <Todo Id>
-}
+headers: { 'Authorization': 'Bearer ' + <Token> }
+
+Body : { id: <Todo Id> }
 
 Return { message: "To do delete", todo: <Todo> }
 
