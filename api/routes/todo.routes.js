@@ -31,6 +31,7 @@ router.post("/", auth, async (req, res) => {
     const todo = await new Todo({
       title: req.body.title,
       owner: req.user.userId,
+      important: req.user.important,
     });
 
     await todo.save();
@@ -51,9 +52,26 @@ router.patch("/", auth, async (req, res) => {
   try {
     const result = await Todo.findByIdAndUpdate(req.body.id, {
       title: req.body.title,
+      important: req.body.important,
     });
 
     res.status(200).json({ message: "Good", result: result });
+  } catch (e) {
+    res.status(500).json({ message: "Something wrong with server(", e });
+  }
+});
+
+// Update Todo Owner -- body{id: <ID>, owner: <ID>}
+
+router.patch("/owner/", auth, async (req, res) => {
+  try {
+    const result = await Todo.findById(req.body.id);
+
+    result.owner = [...result.owner, req.body.owner];
+
+    await result.save();
+
+    res.status(200).json({ message: "Good", owner: result.owner });
   } catch (e) {
     res.status(500).json({ message: "Something wrong with server(", e });
   }

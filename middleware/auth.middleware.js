@@ -11,7 +11,6 @@ module.exports = (req, res, next) => {
     if (!token) {
       return res.status(401).json({ message: "Fail of authorization(" });
     }
-
     const decoded = jwt.verify(token, "jwtSecret");
 
     req.user = decoded;

@@ -26,7 +26,7 @@ router.post(
           message: "Incorect data of registration",
         });
       }
-      const { email, password } = req.body;
+      const { email, password, name } = req.body;
 
       const candidate = await User.findOne({ email });
 
@@ -36,7 +36,7 @@ router.post(
 
       const hashedPassword = await bcrypt.hash(password, 12);
 
-      const user = new User({ email, password: hashedPassword });
+      const user = new User({ email, password: hashedPassword, name });
 
       await user.save();
 
@@ -66,6 +66,7 @@ router.post(
           message: "Incorect data in time of login",
         });
       }
+
       const { email, password } = req.body;
       const user = await User.findOne({
         email: email,
@@ -82,7 +83,7 @@ router.post(
       }
 
       const token = jwt.sign({ userId: user.id }, "jwtSecret", {
-        expiresIn: "1h",
+        expiresIn: "24h",
       });
 
       res.status(200).json({ token: token, userId: user.id });

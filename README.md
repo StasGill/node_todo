@@ -10,7 +10,8 @@
 
 **Body** : {
 "email": SOME EMAIL,
-"password": SOME PASSWORD
+"password": SOME PASSWORD,
+"name": SOME NAME
 }
 
 **Password** must be not less 6 simbols and not more 12 simbols
@@ -52,9 +53,9 @@
 
 **headers** : { 'Authorization': 'Bearer ' + Token }
 
-**Body** : { title: Todo Title }
+**Body** : { title: Todo Title , important: "not important"}
 
-**Return** { message: ""Good", todo: [ Alltodo ] }
+**Return** { message: "Good", todo: [ Alltodo ] }
 
 ---
 
@@ -66,10 +67,7 @@
 
 **headers** : { 'Authorization': 'Bearer ' + Token }
 
-**Body** : {
-id: Todo Id,
-title: Todo Title
-}
+**Body** : { id: Todo Id, title: Todo Title }
 
 **Return** : { message: ""Good", todo: [ Todo ] }
 

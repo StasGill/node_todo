@@ -4,14 +4,14 @@ const { Router } = require("express");
 
 const User = require("../../models/user");
 
-const Todos = require("../../models/todos");
+const Todos = require("../../models/insideTodo");
 const Todo = require("../../models/todo");
 
 const router = Router();
 
 //Get all Todos -- body{id: <Todo.Id>}
 
-router.get("/", auth, async (req, res) => {
+router.post("/", auth, async (req, res) => {
   try {
     // await User.findById(req.user.userId);
 
@@ -25,12 +25,13 @@ router.get("/", auth, async (req, res) => {
 
 // Add one Todos -- body{id: <Todo.Id>,title: <TEXT>}
 
-router.post("/", auth, async (req, res) => {
+router.put("/", auth, async (req, res) => {
   try {
     const todo = await Todo.findById(req.body.id);
 
     const todos = await new Todos({
       title: req.body.title,
+      important: req.body.important,
       owner: req.body.id,
       isValid: req.body.isValid,
     });
@@ -54,6 +55,7 @@ router.patch("/", auth, async (req, res) => {
     const result = await Todos.findByIdAndUpdate(req.body.id, {
       title: req.body.title,
       isValid: req.body.isValid,
+      important: req.body.important,
     });
 
     res.status(200).json({ message: "Good", result: result });
