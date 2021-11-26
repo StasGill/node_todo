@@ -31,7 +31,7 @@ router.post("/", auth, async (req, res) => {
     const todo = await new Todo({
       title: req.body.title,
       owner: req.user.userId,
-      important: req.user.important,
+      important: req.body.important,
     });
 
     await todo.save();
