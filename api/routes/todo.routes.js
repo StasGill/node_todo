@@ -67,7 +67,7 @@ router.patch("/owner/", auth, async (req, res) => {
   try {
     const result = await Todo.findById(req.body.id);
 
-    result.owner = [...result.owner, req.body.owner];
+    result.owner = [...result.owner, req.user.userId];
 
     await result.save();
 

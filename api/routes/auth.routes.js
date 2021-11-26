@@ -82,9 +82,7 @@ router.post(
         return res.status(400).json({ message: "Password incorect" });
       }
 
-      const token = jwt.sign({ userId: user.id }, "jwtSecret", {
-        expiresIn: "24h",
-      });
+      const token = jwt.sign({ userId: user.id }, "jwtSecret");
 
       res.status(200).json({ token: token, userId: user.id });
     } catch (e) {
