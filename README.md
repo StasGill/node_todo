@@ -29,7 +29,7 @@
 "password": SOME PASSWORD
 }
 
-**Return** Token
+**Return** Token , UserId , Todo
 
 ---
 

@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { check, validationResult } = require("express-validator");
 const User = require("../../models/user");
+const Todo = require("../../models/todo");
 
 const router = Router();
 
@@ -63,7 +64,7 @@ router.post(
       if (!errors.isEmpty()) {
         return res.status(400).json({
           errors: errors.array(),
-          message: "Incorect data in time of login",
+          message: "Incorrect data in time of SignIn",
         });
       }
 
@@ -79,12 +80,14 @@ router.post(
       const isMatch = await bcrypt.compare(password, user.password);
 
       if (!isMatch) {
-        return res.status(400).json({ message: "Password incorect" });
+        return res.status(400).json({ message: "Password incorrect" });
       }
+
+      const todo = await Todo.find({ owner: user.id });
 
       const token = jwt.sign({ userId: user.id }, "jwtSecret");
 
-      res.status(200).json({ token: token, userId: user.id });
+      res.status(200).json({ token: token, userId: user.id, todo });
     } catch (e) {
       res.status(500).json({ message: "Something wrong with server(" });
     }
