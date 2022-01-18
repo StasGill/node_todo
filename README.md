@@ -14,7 +14,7 @@
 "name": SOME NAME
 }
 
-**Password** must be not less 6 simbols and not more 12 simbols
+**Password** must be not less 6 symbol and not more 12 symbols
 
 ---
 
@@ -41,7 +41,7 @@
 
 **headers** : { 'Authorization': 'Bearer ' + Token }
 
-**Return** { message: ""Good", todo: [ Alltodo ] }
+**Return** { message: ""Good", todo: [ AllTodo ] }
 
 ---
 
@@ -55,7 +55,7 @@
 
 **Body** : { title: Todo Title , important: "not important"}
 
-**Return** { message: "Good", todo: [ Alltodo ] }
+**Return** { message: "Good", todo: [ AllTodo ] }
 
 ---
 
