@@ -2,7 +2,7 @@ const { Schema, model, Types } = require("mongoose");
 
 const schema = new Schema({
   title: { type: String },
-  important: { type: String, default: "not important" },
+  priority: { type: String, default: "low" },
   owner: [{ type: Types.ObjectId, ref: "User" }],
   todos: [{ type: Types.ObjectId, ref: "Todos" }],
 });
