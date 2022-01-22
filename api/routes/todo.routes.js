@@ -31,7 +31,7 @@ router.post("/", auth, async (req, res) => {
     const todo = await new Todo({
       title: req.body.title,
       owner: req.user.userId,
-      priority: req.body.important,
+      priority: req.body.priority,
     });
 
     await todo.save();
@@ -52,7 +52,7 @@ router.patch("/", auth, async (req, res) => {
   try {
     const result = await Todo.findByIdAndUpdate(req.body.id, {
       title: req.body.title,
-      priority: req.body.important,
+      priority: req.body.priority,
     });
 
     res.status(200).json({ message: "Good", result: result });
