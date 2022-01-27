@@ -29,9 +29,9 @@ router.post("/", auth, async (req, res) => {
     const user = await User.findById(req.user.userId);
 
     const todo = await new Todo({
-      title: req.body.title,
+      title: req.body.data.title,
       owner: req.user.userId,
-      priority: req.body.priority,
+      priority: req.body.data.priority,
     });
 
     await todo.save();
