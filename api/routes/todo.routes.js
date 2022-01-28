@@ -40,7 +40,10 @@ router.post("/", auth, async (req, res) => {
 
     await user.save();
 
-    res.status(200).json({ message: "Good", todo: user.todo });
+    const updatedTodo = await Todo.find({ owner: req.user.userId });
+    console.log("todo", updatedTodo);
+
+    res.status(200).json({ message: "Good", todo: updatedTodo });
   } catch (e) {
     res.status(500).json({ message: "Something wrong with server(", e });
   }
