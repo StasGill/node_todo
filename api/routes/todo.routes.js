@@ -53,12 +53,16 @@ router.post("/", auth, async (req, res) => {
 
 router.patch("/", auth, async (req, res) => {
   try {
-    const result = await Todo.findByIdAndUpdate(req.body.id, {
-      title: req.body.title,
-      priority: req.body.priority,
+    const result = await Todo.findByIdAndUpdate(req.body.data.id, {
+      title: req.body.data.title,
+      priority: req.body.data.priority,
     });
 
-    res.status(200).json({ message: "Good", result: result });
+    const updatedTodo = await Todo.find({ owner: req.user.userId });
+
+    res
+      .status(200)
+      .json({ message: "ToDo was updated", updatedTodo: updatedTodo });
   } catch (e) {
     res.status(500).json({ message: "Something wrong with server(", e });
   }
