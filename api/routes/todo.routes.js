@@ -57,7 +57,6 @@ router.patch("/", auth, async (req, res) => {
       title: req.body.data.title,
       priority: req.body.data.priority,
     });
-
     const updatedTodo = await Todo.find({ owner: req.user.userId });
 
     res
