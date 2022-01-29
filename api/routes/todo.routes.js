@@ -5,6 +5,7 @@ const { Router } = require("express");
 const User = require("../../models/user");
 const user = require("../../models/user");
 const Todo = require("../../models/todo");
+const { ObjectId } = require("mongoose");
 
 const router = Router();
 
@@ -41,7 +42,6 @@ router.post("/", auth, async (req, res) => {
     await user.save();
 
     const updatedTodo = await Todo.find({ owner: req.user.userId });
-    console.log("todo", updatedTodo);
 
     res.status(200).json({ message: "Good", todo: updatedTodo });
   } catch (e) {
@@ -84,13 +84,19 @@ router.patch("/owner/", auth, async (req, res) => {
 
 router.delete("/", auth, async (req, res) => {
   try {
-    const result = await Todo.findByIdAndDelete(req.body.id);
+    await Todo.findByIdAndDelete(req.body.data.id);
     const user = await User.findById(req.user.userId);
-    const newTodo = user.todo.filter((item) => item._id !== req.body.id);
+    const newTodo = user.todo.filter(
+      (item) => !item._id.equals(req.body.data.id)
+    );
+
     user.todo = newTodo;
     await user.save();
+    const updatedTodo = await Todo.find({ owner: req.user.userId });
 
-    res.status(200).json({ message: "Todo delete", result: result });
+    res
+      .status(200)
+      .json({ message: "Todo was deleted", updatedTodo: updatedTodo });
   } catch (e) {
     res.status(500).json({ message: "Something wrong with server(", e });
   }

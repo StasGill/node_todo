@@ -4,9 +4,9 @@ module.exports = (req, res, next) => {
   if (req.method === "OPTIONS") {
     return next();
   }
-
+  console.log("Token", req.body.headers.Authorization);
   try {
-    const token = req.body.headers.authorization;
+    const token = req.body.headers.Authorization;
 
     if (!token) {
       return res.status(401).json({ message: "Fail of authorization(" });
