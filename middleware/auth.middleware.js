@@ -4,7 +4,7 @@ module.exports = (req, res, next) => {
   if (req.method === "OPTIONS") {
     return next();
   }
-  console.log("Token", req.body.headers.Authorization);
+
   try {
     const token = req.body.headers.Authorization;
 

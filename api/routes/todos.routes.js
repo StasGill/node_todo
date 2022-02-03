@@ -15,7 +15,7 @@ router.post("/", auth, async (req, res) => {
   try {
     // await User.findById(req.user.userId);
 
-    const todos = await Todos.find({ owner: req.body.id });
+    const todos = await Todos.find({ owner: req.body.data.id });
 
     res.status(200).json({ message: "Good", todos: todos });
   } catch (e) {
