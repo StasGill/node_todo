@@ -52,12 +52,12 @@ router.put("/", auth, async (req, res) => {
 
 router.patch("/", auth, async (req, res) => {
   try {
-    const result = await Todos.findByIdAndUpdate(req.body.id, {
-      title: req.body.title,
-      isValid: req.body.isValid,
-      important: req.body.important,
+    const result = await Todos.findByIdAndUpdate(req.body.data.id, {
+      title: req.body.data.title,
+      isValid: req.body.data.isValid,
+      important: req.body.data.important,
     });
-
+    console.log("second", result);
     res.status(200).json({ message: "Good", result: result });
   } catch (e) {
     res.status(500).json({ message: "Something wrong with server(", e });
