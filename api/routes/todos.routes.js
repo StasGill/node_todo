@@ -27,12 +27,12 @@ router.post("/", auth, async (req, res) => {
 
 router.put("/", auth, async (req, res) => {
   try {
-    const todo = await Todo.findById(req.body.id);
+    const todo = await Todo.findById(req.body.data.id);
 
     const todos = await new Todos({
-      title: req.body.title,
+      title: req.body.data.title,
       important: req.body.important,
-      owner: req.body.id,
+      owner: req.body.data.id,
       isValid: req.body.isValid,
     });
 
@@ -68,12 +68,11 @@ router.patch("/", auth, async (req, res) => {
 
 router.delete("/", auth, async (req, res) => {
   try {
-    const result = await Todos.findByIdAndDelete(req.body.id);
+    const result = await Todos.findByIdAndDelete(req.body.data.id);
     // const todo = await Todo.findById(req.user.owner);
     // const newTodo = todo.todos.filter((item) => item._id !== req.body.id);
     // todo.todos = newTodo;
     // await todo.save();
-
     res.status(200).json({ message: "Todos delete", result: result });
   } catch (e) {
     res.status(500).json({ message: "Something wrong with server(", e });
