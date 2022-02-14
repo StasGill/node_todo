@@ -11,10 +11,9 @@ const router = Router();
 
 //Get all Todos -- body{id: <Todo.Id>}
 
-router.get("/", auth, async (req, res) => {
+router.post("/", auth, async (req, res) => {
   try {
     // await User.findById(req.user.userId);
-
     const todos = await Todos.find({ owner: req.body.data.id });
 
     res.status(200).json({ message: "Good", todos: todos });
