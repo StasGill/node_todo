@@ -11,7 +11,7 @@ const router = Router();
 
 //Get all Todos -- body{id: <Todo.Id>}
 
-router.post("/", auth, async (req, res) => {
+router.get("/", auth, async (req, res) => {
   try {
     // await User.findById(req.user.userId);
 
