@@ -87,7 +87,15 @@ router.post(
 
       const token = jwt.sign({ userId: user.id }, "jwtSecret");
 
-      res.status(200).json({ token: token, userId: user.id, todo });
+      res
+        .status(200)
+        .json({
+          token: token,
+          userId: user.id,
+          name: user.name,
+          email: user.email,
+          todo,
+        });
     } catch (e) {
       res.status(500).json({ message: "Something wrong with server(" });
     }
