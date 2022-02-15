@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const { check, validationResult } = require("express-validator");
 const User = require("../../models/user");
 const Todo = require("../../models/todo");
+const Todos = require("../../models/insideTodo");
 
 const router = Router();
 
@@ -83,19 +84,20 @@ router.post(
         return res.status(400).json({ message: "Password incorrect" });
       }
 
-      const todo = await Todo.find({ owner: user.id });
+      const todo = await Todo.find({ owner: user.id }).populate({
+        path: "todos",
+        model: Todos,
+      });
 
       const token = jwt.sign({ userId: user.id }, "jwtSecret");
 
-      res
-        .status(200)
-        .json({
-          token: token,
-          userId: user.id,
-          name: user.name,
-          email: user.email,
-          todo,
-        });
+      res.status(200).json({
+        token: token,
+        userId: user.id,
+        name: user.name,
+        email: user.email,
+        todo,
+      });
     } catch (e) {
       res.status(500).json({ message: "Something wrong with server(" });
     }

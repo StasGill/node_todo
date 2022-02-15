@@ -6,16 +6,20 @@ const User = require("../../models/user");
 const user = require("../../models/user");
 const Todo = require("../../models/todo");
 const { ObjectId } = require("mongoose");
+const Todos = require("../../models/insideTodo");
 
 const router = Router();
 
-//Get alll Todo
+//Get all Todo
 
 router.get("/", auth, async (req, res) => {
   try {
     await User.findById(req.user.userId);
 
-    const todo = await Todo.find({ owner: req.user.userId });
+    const todo = await Todo.find({ owner: req.user.userId }).populate({
+      path: "todos",
+      model: Todos,
+    });
 
     res.status(200).json({ message: "Good", todo: todo });
   } catch (e) {
