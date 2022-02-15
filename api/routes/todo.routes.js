@@ -45,7 +45,10 @@ router.post("/", auth, async (req, res) => {
 
     await user.save();
 
-    const updatedTodo = await Todo.find({ owner: req.user.userId });
+    const updatedTodo = await Todo.find({ owner: req.user.userId }).populate({
+      path: "todos",
+      model: Todos,
+    });
 
     res.status(200).json({ message: "Good", todo: updatedTodo });
   } catch (e) {
@@ -61,7 +64,10 @@ router.patch("/", auth, async (req, res) => {
       title: req.body.data.title,
       priority: req.body.data.priority,
     });
-    const updatedTodo = await Todo.find({ owner: req.user.userId });
+    const updatedTodo = await Todo.find({ owner: req.user.userId }).populate({
+      path: "todos",
+      model: Todos,
+    });
 
     res
       .status(200)
@@ -99,7 +105,10 @@ router.delete("/", auth, async (req, res) => {
 
     user.todo = newTodo;
     await user.save();
-    const updatedTodo = await Todo.find({ owner: req.user.userId });
+    const updatedTodo = await Todo.find({ owner: req.user.userId }).populate({
+      path: "todos",
+      model: Todos,
+    });
 
     res
       .status(200)
