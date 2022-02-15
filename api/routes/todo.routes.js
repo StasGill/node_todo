@@ -12,7 +12,7 @@ const router = Router();
 
 //Get all Todo
 
-router.get("/", auth, async (req, res) => {
+router.post("/", auth, async (req, res) => {
   try {
     await User.findById(req.user.userId);
 
