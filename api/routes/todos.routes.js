@@ -1,9 +1,6 @@
 const auth = require("../../middleware/auth.middleware");
-
 const { Router } = require("express");
-
 const User = require("../../models/user");
-
 const Todos = require("../../models/insideTodo");
 const Todo = require("../../models/todo");
 
@@ -51,13 +48,18 @@ router.put("/", auth, async (req, res) => {
 
 router.patch("/", auth, async (req, res) => {
   try {
-    const result = await Todos.findByIdAndUpdate(req.body.data.id, {
+    await Todos.findByIdAndUpdate(req.body.data.id, {
       title: req.body.data.title,
       isValid: req.body.data.isValid,
       important: req.body.data.important,
     });
-    console.log("second", result);
-    res.status(200).json({ message: "Good", result: result });
+
+    const todo = await Todo.find({ owner: req.user.userId }).populate({
+      path: "todos",
+      model: Todos,
+    });
+
+    res.status(200).json({ message: "Good", todo: todo });
   } catch (e) {
     res.status(500).json({ message: "Something wrong with server(", e });
   }
